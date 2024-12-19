@@ -37,12 +37,10 @@ def upload_file():
     image = tf.image.decode_jpeg(image)
 
     processed_image_encoded = draw_skeleton(image)
-    # output_filename = 'output_' + file.filename
-    # cv2.imwrite(output_filename, result_image)
+    
     
     # Convert images to display on HTML
     original_image_encoded = base64.b64encode(open(filename, "rb").read()).decode('ascii')
-    #processed_image_encoded = base64.b64encode(open(output_filename, "rb").read()).decode('ascii')
 
     return render_template_string('''
     <!doctype html>
