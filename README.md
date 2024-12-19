@@ -12,6 +12,7 @@ The body pose estimation system uses a pre-trained TensorFlow model to analyze i
 - Pose estimation with high accuracy.
 - Support for various image formats.
 - Easy-to-use web interface for uploading images.
+- Download the key points on black canvas
 
 ## Installation
 

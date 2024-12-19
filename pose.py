@@ -294,7 +294,7 @@ else:
         keypoints_with_scores = outputs['output_0'].numpy()
         return keypoints_with_scores
   
-def draw_skeleton(image):
+def draw_skeleton(image, output_path):
     # Resize and pad the image to keep the aspect ratio and fit the expected size.
     input_image = tf.expand_dims(image, axis=0)
     input_image = tf.image.resize_with_pad(input_image, input_size, input_size)
@@ -315,8 +315,11 @@ def draw_skeleton(image):
 
     buf = io.BytesIO()
     plt.savefig(buf, format='png', bbox_inches='tight', pad_inches=0)
+    buf.seek(0)
+
+    # Save to disk for downloading
+    plt.savefig(output_path, format='png', bbox_inches='tight', pad_inches=0)
     plt.close(fig)
-
-
+    
     image_base64 = base64.b64encode(buf.getvalue()).decode('ascii')
     return image_base64

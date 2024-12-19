@@ -1,4 +1,4 @@
-from flask import  Flask, request, render_template_string
+from flask import  Flask, request, render_template_string,send_from_directory
 import os
 from pose import *
 import tensorflow as tf
@@ -36,7 +36,8 @@ def upload_file():
     image = tf.io.read_file(filename)
     image = tf.image.decode_jpeg(image)
 
-    processed_image_encoded = draw_skeleton(image)
+    output_filename = "output_" + file.filename
+    processed_image_encoded = draw_skeleton(image, os.path.join("uploads", output_filename))
     
     
     # Convert images to display on HTML
@@ -69,13 +70,19 @@ def upload_file():
             <div>
                 <h2>Processed Image:</h2>
                 <img src="data:image/jpeg;base64,{{ processed_image }}" style="width:560px; height:560px;" alt="Processed Image">
+                <br>
+                <a href="/download/{{ output_filename }}">Download Processed Image</a>
             </div>
         </div>                          
         <a href="/">Upload another image</a>
     </body>
     </html>
-    ''', original_image=original_image_encoded, processed_image=processed_image_encoded)
+    ''', original_image=original_image_encoded, processed_image=processed_image_encoded, output_filename=output_filename)
 
+@app.route("/download/<filename>", methods =['GET'])
+def download_image(filename):
+    print(filename)
+    return send_from_directory("uploads", filename, as_attachment=True)
 
 if __name__ == '__main__':
     app.run(debug=True)
