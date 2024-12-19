@@ -1,10 +1,7 @@
-from flask import  Flask, request, send_file, render_template_string
+from flask import  Flask, request, render_template_string
 import os
 from pose import *
 import tensorflow as tf
-import tensorflow_hub as hub
-from tensorflow_docs.vis import embed
-import cv2
 import base64
 
 

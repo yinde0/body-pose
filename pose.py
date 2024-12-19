@@ -213,24 +213,6 @@ def progress(value, max=100):
       
   """.format(value=value, max=max))
 
-
-# model_name = "movenet_lightning"
-
-# if "tflite" in model_name:
-#   if "movenet_lightning_f16" in model_name:
-#     !wget -q -O model.tflite https://tfhub.dev/google/lite-model/movenet/singlepose/lightning/tflite/float16/4?lite-format=tflite
-#     input_size = 192
-#   elif "movenet_thunder_f16" in model_name:
-#     !wget -q -O model.tflite https://tfhub.dev/google/lite-model/movenet/singlepose/thunder/tflite/float16/4?lite-format=tflite
-#     input_size = 256
-#   elif "movenet_lightning_int8" in model_name:
-#     !wget -q -O model.tflite https://tfhub.dev/google/lite-model/movenet/singlepose/lightning/tflite/int8/4?lite-format=tflite
-#     input_size = 192
-#   elif "movenet_thunder_int8" in model_name:
-#     !wget -q -O model.tflite https://tfhub.dev/google/lite-model/movenet/singlepose/thunder/tflite/int8/4?lite-format=tflite
-#     input_size = 256
-#   else:
-#     raise ValueError("Unsupported model name: %s" % model_name)
 model_name = "movenet_lightning"
 
 if "tflite" in model_name:
